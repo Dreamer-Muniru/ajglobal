@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJ Global Motors - Premium New & Used Vehicles</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, #f39c12, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: -1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #f39c12, #e74c3c);
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(243, 156, 18, 0.6);
+        }
+
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #1a1a1a;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #f39c12;
+            margin-bottom: 1rem;
+        }
+
+        .inventory {
+            background: #f8f9fa;
+        }
+
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .car-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .car-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .car-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .car-details {
+            padding: 1.5rem;
+        }
+
+        .car-details h3 {
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .car-price {
+            color: #f39c12;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .car-specs {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .inquire-btn {
+            display: block;
+            width: 100%;
+            background: #1a1a1a;
+            color: white;
+            padding: 0.8rem;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .inquire-btn:hover {
+            background: #f39c12;
+        }
+
+        .about {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+        }
+
+        .about h2 {
+            color: white;
+        }
+
+        .contact {
+            background: #f8f9fa;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-card h3 {
+            color: #f39c12;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                AJ GLOBAL
+
+            </div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#inventory">Inventory</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <!-- REPLACE 'YOUR-VIDEO-FILE.mp4' WITH YOUR ACTUAL VIDEO FILE PATH -->
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="honda crv.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Your Trusted Automobile Partner</h1>
+            <p>Quality New & Used Vehicles from Around the World</p>
+            <a href="#inventory" class="cta-button">Browse Inventory</a>
+        </div>
+    </section>
+
+    <section id="features">
+        <h2>Why Choose AJ Global Motors</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>Global Sourcing</h3>
+                <p>We import premium vehicles from trusted markets worldwide, ensuring quality and variety.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✓</div>
+                <h3>Quality Assured</h3>
+                <p>Every vehicle undergoes rigorous inspection to meet our high standards.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💎</div>
+                <h3>Competitive Prices</h3>
+                <p>Direct imports and smart sourcing mean better value for you.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Trusted Service</h3>
+                <p>Years of experience and countless satisfied customers speak for us.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="inventory" class="inventory">
+        <h2>Featured Inventory</h2>
+        <div class="car-grid">
+            <!-- CAR 1 - REPLACE 'car1.jpg' WITH YOUR IMAGE PATH -->
+            <div class="car-card">
+                <img src="images/2023 toyota camry.jpg" alt="2023 Toyota Camry" class="car-image">
+                <div class="car-details">
+                    <h3>2023 Toyota Camry</h3>
+                    <div class="car-specs">
+                        <span>📅 2023</span>
+                        <span>⚙️ Automatic</span>
+                        <span>⛽ Hybrid</span>
+                    </div>
+                    <div class="car-price">$28,500</div>
+                    <a href="#contact" class="inquire-btn">Inquire Now</a>
+                </div>
+            </div>
+
+            <!-- CAR 2 - REPLACE 'car2.jpg' WITH YOUR IMAGE PATH -->
+            <div class="car-card">
+                <img src="images/honda crv.jpg" alt="2022 Honda CR-V" class="car-image">
+                <div class="car-details">
+                    <h3>2022 Honda CR-V</h3>
+                    <div class="car-specs">
+                        <span>📅 2022</span>
+                        <span>⚙️ Automatic</span>
+                        <span>⛽ Petrol</span>
+                    </div>
+                    <div class="car-price">$32,900</div>
+                    <a href="#contact" class="inquire-btn">Inquire Now</a>
+                </div>
+            </div>
+
+            <!-- CAR 3 - REPLACE 'car3.jpg' WITH YOUR IMAGE PATH -->
+            <div class="car-card">
+                <img src="images/2024 BMW.png" alt="2024 BMW 3 Series" class="car-image">
+                <div class="car-details">
+                    <h3>2024 BMW 3 Series</h3>
+                    <div class="car-specs">
+                        <span>📅 2024</span>
+                        <span>⚙️ Automatic</span>
+                        <span>⛽ Diesel</span>
+                    </div>
+                    <div class="car-price">$45,900</div>
+                    <a href="#contact" class="inquire-btn">Inquire Now</a>
+                </div>
+            </div>
+
+            <!-- CAR 4 - REPLACE 'car4.jpg' WITH YOUR IMAGE PATH -->
+            <div class="car-card">
+                <img src="images/2023 Mercedes-Benz.png" alt="2023 Mercedes-Benz GLE" class="car-image">
+                <div class="car-details">
+                    <h3>2023 Mercedes-Benz GLE</h3>
+                    <div class="car-specs">
+                        <span>📅 2023</span>
+                        <span>⚙️ Automatic</span>
+                        <span>⛽ Hybrid</span>
+                    </div>
+                    <div class="car-price">$67,500</div>
+                    <a href="#contact" class="inquire-btn">Inquire Now</a>
+                </div>
+            </div>
+
+            <!-- CAR 5 - REPLACE 'car5.jpg' WITH YOUR IMAGE PATH -->
+            <div class="car-card">
+                <img src="images/2023 Nissan Altima.png" alt="2023 Nissan Altima" class="car-image">
+                <div class="car-details">
+                    <h3>2023 Nissan Altima</h3>
+                    <div class="car-specs">
+                        <span>📅 2023</span>
+                        <span>⚙️ Automatic</span>
+                        <span>⛽ Petrol</span>
+                    </div>
+                    <div class="car-price">$24,800</div>
+                    <a href="#contact" class="inquire-btn">Inquire Now</a>
+                </div>
+            </div>
+
+            <!-- CAR 6 - REPLACE 'car6.jpg' WITH YOUR IMAGE PATH -->
+            <div class="car-card">
+                <img src="images/2024 Ford Explorer.png" alt="2024 Ford Explorer" class="car-image">
+                <div class="car-details">
+                    <h3>2024 Ford Explorer</h3>
+                    <div class="car-specs">
+                        <span>📅 2024</span>
+                        <span>⚙️ Automatic</span>
+                        <span>⛽ Petrol</span>
+                    </div>
+                    <div class="car-price">$38,900</div>
+                    <a href="#contact" class="inquire-btn">Inquire Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>About AJ Global Motors</h2>
+        <p style="max-width: 800px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8;">
+            At AJ Global Motors, we pride ourselves on being your trusted partner in finding the perfect vehicle. With years of experience in the automobile industry, we specialize in importing and selling quality new and used vehicles from around the world. Our commitment to excellence means every vehicle in our inventory has been carefully selected and thoroughly inspected to ensure it meets our rigorous standards. We understand that purchasing a vehicle is a significant investment, and we're here to guide you through every step of the process with transparency, expertise, and exceptional customer service.
+        </p>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Get In Touch</h2>
+        <p style="font-size: 1.1rem; margin-bottom: 2rem;">Ready to find your perfect vehicle? Contact us today!</p>
+        <div class="contact-info">
+            <div class="contact-card">
+                <h3>📞 Phone</h3>
+                <p>0548943466</p>
+            </div>
+            <div class="contact-card">
+                <h3>📧 Email</h3>
+                <p>primecapital0548@gmail.com</p>
+            </div>
+            <div class="contact-card">
+                <h3>📍 Locations</h3>
+                <p>Accra<br>Tamale<br>Garu</p>
+            </div>
+            <div class="contact-card">
+                <h3>🕒 Hours</h3>
+                <p>Mon-Fri: 9AM - 6PM<br>Sat: 10AM - 4PM</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 AJ Global Motors. All rights reserved. | Your Trusted Automobile Partner</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                header.style.background = 'rgba(26, 26, 26, 0.95)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+    </script>
+</body>
+</html>
